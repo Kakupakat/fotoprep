@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # AUTHOR:   Andreas Betschart.
-# DATE:     22.01.2018.
+# DATE:     23.01.2018.
 # PROGRAM:  fotoprep
-# VERSION:  0.9.9
+  VERSION=0.9.9
 # USAGE:    Start the program from the command line and add all the images you want to edit as arguments.
 # PURPOSE:  Prepare photos for use on the Internet, tablets, phones, etc.
 #           1. Convert and resize images (even XCF and RAW files).
@@ -143,10 +143,15 @@ if [[ $# -eq 0 ]]; then
     printf "                         tablets, phones, etc.\n"
     printf " fotoprep -s          ${lightCyan}->${noColor} Run the setup program to set and/or\n"
     printf "                         change options.\n"
+    printf " fotoprep -v          ${lightCyan}->${noColor} Print the version number of fotoprep.\n"
     printf " fotoprep             ${lightCyan}->${noColor} Print this help.\n"
     exit 0
 
 fi
+
+# Print the version of fotoprep
+if [[ $@ == "-v" ]]; then echo " fotoprep version: "$VERSION"" && exit 0 ; fi
+
 
 #---------------------------------------------------------------------------
 # Find out where the configuration file is.
@@ -947,7 +952,7 @@ if [[ $@ == "-s" ]]; then
 
 
     configuration="    # AUTHOR:   Andreas Betschart.
-    # DATE:     22.01.2018.
+    # DATE:     23.01.2018.
     # PROGRAM:  fotoprep.
     # VERSION:  0.9.9
     # PURPOSE:  A central place for storing variables used in fotoprep.
