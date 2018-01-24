@@ -12,19 +12,6 @@
 # REASON:   Digikam's batch tool can't convert XCF or RAW files. So you will have to do that separately anyway.
 # FILES:    fotoprep, the watermark file and the logo(s) for the annotation.
 #           "$CONFIG" will be created by running the fotoprep setup (fotoprep -s).
-# NOTE:     ExifTool, GIMP, RawTherapee and ImageMagick must be installed.
-# NOTE:     This will probably work only in Bash >= 4.0.
-# NOTE:     To put this in the path do: sudo ln -s /home/<user>/path/to/fotoprep /usr/bin/fotoprep.
-
-# fotoprep - Prepare photos for use on the Internet, tablets, phones, etc.
-
-# Copyright (C) Andreas Betschart.
-
-# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
 
 ##############################################################################
 # WARNING: ONLY TOUCH STUFF BELOW THIS POINT IF YOU KNOW WHAT YOU ARE DOING. #
@@ -1289,7 +1276,7 @@ mkdir "$directory"/"$workingDirectory"
 
 # Copy the files to the $directory. Add some safety checks.
 num=1
-for i in "$@"; do
+for i do # in "$@";
 
     extension="${i##*.}"           # get the extension
     basename="$(basename "$i")"    # get the filename without path
