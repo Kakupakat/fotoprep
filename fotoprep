@@ -108,6 +108,18 @@ spinner()
     tput cnorm
 }
 
+usage()
+{
+    printf " ${yellow}fotoprep Usage:${noColor}\n"
+    printf " fotoprep filename(s) ${lightCyan}->${noColor} Prepare photos for use on the Internet,\n"
+    printf "                         tablets, phones, etc.\n"
+    printf " fotoprep -s          ${lightCyan}->${noColor} Run the setup program to set and/or\n"
+    printf "                         change options.\n"
+    printf " fotoprep -v          ${lightCyan}->${noColor} Print the version number of fotoprep.\n"
+    printf " fotoprep             ${lightCyan}->${noColor} Print this help.\n"
+    exit 0
+}
+
 
 #---------------------------------------------------------------------------
 # Check if the necessary programs are installed.
@@ -124,15 +136,7 @@ command -v rawtherapee >/dev/null 2>&1 || { echo >&2 "It seems RawTherapee is no
 
 if [[ $# -eq 0 ]]; then
 
-    clear
-    printf " ${yellow}fotoprep Usage:${noColor}\n"
-    printf " fotoprep filename(s) ${lightCyan}->${noColor} Prepare photos for use on the Internet,\n"
-    printf "                         tablets, phones, etc.\n"
-    printf " fotoprep -s          ${lightCyan}->${noColor} Run the setup program to set and/or\n"
-    printf "                         change options.\n"
-    printf " fotoprep -v          ${lightCyan}->${noColor} Print the version number of fotoprep.\n"
-    printf " fotoprep             ${lightCyan}->${noColor} Print this help.\n"
-    exit 0
+    usage
 
 fi
 
@@ -1066,6 +1070,31 @@ if [[ $@ == "-s" ]]; then
     exit 0
 
 fi
+
+#---------------------------------------------------------------------------
+# Check if the given parameters are images
+#---------------------------------------------------------------------------
+
+
+for i in "$@"; do
+
+    if file "$i" 2> /dev/null | grep -qE 'image|bitmap'; then
+
+        continue
+
+    else
+
+        printf " ${red}One or more of the given arguments are either not an image file or\n"
+        printf " not a valid option.${noColor}\n"
+
+        usage
+
+        exit 1
+
+    fi
+
+done
+
 
 # Check if there is a configuration file
 if [ ! -f ""$myPath"/"$config"" ]; then
