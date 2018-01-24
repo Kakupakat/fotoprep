@@ -199,17 +199,18 @@ if [[ $@ == "-s" ]]; then
     preset6="Pixls.us"
 
     clear
-    printf "${red}---------------------------------------------------------------------${noColor}\n"
+    printf "${red}----------------------------------------------------------------------${noColor}\n"
     printf " ${darkGray}Here we will determine the standart settings for fotoprep.${noColor}\n"
     printf " ${darkGray}Run this before using fotoprep or whenever you want to change ${noColor}\n"
     printf " ${darkGray}any of the standard settings. The predifined values will appear${noColor}\n"
     printf " ${darkGray}in ${green}(green)${darkGray}.${noColor}\n"
-    printf "${red}---------------------------------------------------------------------${noColor}\n"
+    printf "${red}----------------------------------------------------------------------${noColor}\n"
     printf "\n"
     printf " [01/16] ${yellow}Watermark File${noColor}\n"
     printf " The absolute path to the watermark file.\n"
-    printf " For reasons of quality, and because it allows transparency, the watermark\n"
-    printf " should be a png file.\n"
+    printf " For reasons of quality, and because it allows transparency, the\n"
+    printf " watermark should be a png file.\n"
+
     printf " Enter the desired ${orange}path${noColor}"
     while read -e -p ": " choice; do
 
