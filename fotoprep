@@ -1075,8 +1075,7 @@ fi
 # Check if the given parameters are images
 #---------------------------------------------------------------------------
 
-
-for i in "$@"; do
+for i do # in "$@";
 
     if file "$i" 2> /dev/null | grep -qE 'image|bitmap'; then
 
