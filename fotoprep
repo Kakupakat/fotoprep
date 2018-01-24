@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 # AUTHOR:   Andreas Betschart.
+#           Adapting and further developing some code by Pat David from:
+#           https://discuss.pixls.us/t/annotation-with-imagemagick-watermark-ish
 # DATE:     23.01.2018.
 # PROGRAM:  fotoprep
   VERSION=0.9.9
