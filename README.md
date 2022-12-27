@@ -22,13 +22,22 @@ The images can be resized and a watermark or an annotation bar can be added. Sha
 
 ## Usage
 
-    fotoprep filename(s) -> Prepare photos for use on the Internet,
-                            tablets, phones, etc.
     fotoprep -s          -> Run the setup program to set and/or
                             change options.
-    fotoprep -v          -> Print the version number of fotoprep.
-    fotoprep             -> Print this help.
+                            You should do this before the first use!
+    fotoprep filename(s) -> Prepare photos for use on the Internet,
+                            tablets, phones, etc."
+    fotoprep -v          -> Show the version number of fotoprep.
+    fotoprep -h          -> Show this help.
 
+    The images you pass to fotoprep can be of different types,
+    even GIMP and RAW files (using RawTherapee and its .pp3
+    sidecar files). The files can come from several different
+    directories in your file system at the same time.
+    Don't worry, your images will not be changed.
+    All operations are performed on copies of the files.
+    The results will be placed in a new directory called:
+    fotoprep-<PID> inside the directory where fotoprep was started.
 
 ## Notes
 
