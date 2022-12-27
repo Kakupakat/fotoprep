@@ -29,3 +29,4 @@ gpl-3.0.txt
 
 
 # End of https://www.gitignore.io/api/kate,linux
+.cfg
