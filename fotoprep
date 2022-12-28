@@ -174,14 +174,14 @@ if [[ $* == "-s" ]]; then
     default_offset=0.005
     widthPreset1=960
     heightPreset1=720
-    widthPreset2=1080
-    heightPreset2=608
-    widthPreset3=1080
-    heightPreset3=566
+    widthPreset2=2000
+    heightPreset2=1500
+    widthPreset3=3500
+    heightPreset3=3500
     widthPreset4=1152
     heightPreset4=768
-    widthPreset5=1280
-    heightPreset5=800
+    widthPreset5=2560
+    heightPreset5=1600
     widthPreset6=1200
     heightPreset6=780
     preset1="Digikam"
@@ -218,14 +218,14 @@ if [[ $* == "-s" ]]; then
     printf " The width of the watermark for an image in landscape orientation.\n"
     printf " A value between 0.01 and 1.\n"
     printf " 1 corresponds to the full width of the image.\n"
-    printf " Enter the desired %bwidth%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$landscape" "${noColor}"
+    printf " Enter the desired %bwidth%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_landscape" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             landscape=${choice:-$default_landscape}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=0.01 && $choice <=1" | bc -l | grep -q 1; then
             landscape="$choice"; break
         else
-            printf " Please enter a value between 0.01 and 1 %b(%s)%b" "${green}" "$landscape" "${noColor}"
+            printf " Please enter a value between 0.01 and 1 %b(%s)%b" "${green}" "$default_landscape" "${noColor}"
         fi
     done
 
@@ -234,14 +234,14 @@ if [[ $* == "-s" ]]; then
     printf " The width of the watermark for an image in portrait orientation.\n"
     printf " A value between 0.01 and 1.\n"
     printf " 1 corresponds to the full width of the image.\n"
-    printf " Enter the desired %bwidth%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$portrait" "${noColor}"
+    printf " Enter the desired %bwidth%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_portrait" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             portrait=${choice:-$default_portrait}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=0.01 && $choice <=1" | bc -l | grep -q 1; then
             portrait="$choice"; break
         else
-            printf " Please enter a value between 0.01 and 1 %b(%s)%b" "${green}" "$portrait" "${noColor}"
+            printf " Please enter a value between 0.01 and 1 %b(%s)%b" "${green}" "$default_portrait" "${noColor}"
         fi
     done
 
@@ -251,14 +251,14 @@ if [[ $* == "-s" ]]; then
     printf " image is extremely wide.\n"
     printf " A value between 0.01 and 1.\n"
     printf " 1 corresponds to the full height of the image.\n"
-    printf " Enter the desired %bmaximum height%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$maxWatermarkHeight" "${noColor}"
+    printf " Enter the desired %bmaximum height%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_maxWatermarkHeight" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             maxWatermarkHeight=${choice:-$default_maxWatermarkHeight}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=0.01 && $choice <=1" | bc -l | grep -q 1; then
             maxWatermarkHeight="$choice"; break
         else
-            printf " Please enter a value between 0.01 and 1 %b(%s)%b" "${green}" "$maxWatermarkHeight" "${noColor}"
+            printf " Please enter a value between 0.01 and 1 %b(%s)%b" "${green}" "$default_maxWatermarkHeight" "${noColor}"
         fi
     done
 
@@ -301,30 +301,30 @@ if [[ $* == "-s" ]]; then
     printf " of the image. Values range from -0.9999 to 0.9999.\n"
     printf " Please enter negative numbers with a minus sign; positive numbers\n"
     printf " without a plus sign.\n"
-    printf " Enter the desired %bhorizontal offset%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$horizontalOffset" "${noColor}"
+    printf " Enter the desired %bhorizontal offset%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_horizontalOffset" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             horizontalOffset=${choice:-$default_horizontalOffset}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=-0.9999 && $choice <=0.9999" | bc -l | grep -q 1; then
             horizontalOffset="$choice"; break
         else
-            printf " Please enter a value between -0.9999 and 0.9999 %b(%s)%b" "${green}" "$horizontalOffset" "${noColor}"
+            printf " Please enter a value between -0.9999 and 0.9999 %b(%s)%b" "${green}" "$default_horizontalOffset" "${noColor}"
         fi
     done
 
-    printf " Enter the desired %bvertikal offset%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$verticalOffset" "${noColor}"
+    printf " Enter the desired %bvertikal offset%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_verticalOffset" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             verticalOffset=${choice:-$default_verticalOffset}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=-0.9999 && $choice <=0.9999" | bc -l | grep -q 1; then
             verticalOffset="$choice"; break
         else
-            printf " Please enter a value between -0.9999 and 0.9999 %b(%s)%b" "${green}" "$verticalOffset" "${noColor}"
+            printf " Please enter a value between -0.9999 and 0.9999 %b(%s)%b" "${green}" "$default_verticalOffset" "${noColor}"
         fi
     done
 
     clear
-    printf " [07/16] %bAnnotation Paths%b\n" "${yellow}" "${noColor}"
+    printf " [07/16] %bAnnotation Logos Paths%b\n" "${yellow}" "${noColor}"
     printf " Absolute paths to the logos for the annotation bar.\n"
     printf " When the color of the annotation footer is calculated as an average\n"
     printf " of the colors of the image, for very bright images we will need a\n"
@@ -354,23 +354,23 @@ if [[ $* == "-s" ]]; then
     printf " The color of the annotation background is calculated as an average of\n"
     printf " the colors of the image. For very bright images we will need a dark\n"
     printf " font and vice versa, all in hex (#......) notation.\n"
-    printf " Enter the desired %bdark font color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$fontDark" "${noColor}"
+    printf " Enter the desired %bdark font color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_fontDark" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             fontDark=${choice:-$default_fontDark}; break
         elif [[ ! $choice =~ $colorRegex ]]; then
-            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$fontDark" "${noColor}"
+            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$default_fontDark" "${noColor}"
         else
             fontDark="$choice"; break
         fi
     done
 
-    printf " Enter the desired %bbright font color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$fontBright" "${noColor}"
+    printf " Enter the desired %bbright font color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_fontBright" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             fontBright=${choice:-$default_fontBright}; break
         elif [[ ! $choice =~ $colorRegex ]]; then
-            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$fontBright" "${noColor}"
+            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$default_fontBright" "${noColor}"
         else
             fontBright="$choice"; break
         fi
@@ -383,23 +383,23 @@ if [[ $* == "-s" ]]; then
     printf " calculated as an average of the colors of the image. Here you can\n"
     printf " choose a fixed background color, a fixed logo and a fixed font color.\n"
     printf " Colors are to be entered in hex (#......) notation.\n"
-    printf " Enter the desired %bfixed background color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$defaultFill" "${noColor}"
+    printf " Enter the desired %bfixed background color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_defaultFill" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             defaultFill=${choice:-$default_defaultFill}; break
         elif [[ ! $choice =~ $colorRegex ]]; then
-            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$defaultFill" "${noColor}"
+            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$default_defaultFill" "${noColor}"
         else
             defaultFill="$choice"; break
         fi
     done
 
-    printf " Enter the desired %bfixed font color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$defaultFontColor" "${noColor}"
+    printf " Enter the desired %bfixed font color%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_defaultFontColor" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             defaultFontColor=${choice:-$default_defaultFontColor}; break
         elif [[ ! $choice =~ $colorRegex ]]; then
-            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$defaultFontColor" "${noColor}"
+            printf " %bThis is not a proper hex color code.%b Please try again %b(%s)%b" "${red}" "${noColor}" "${green}" "$default_defaultFontColor" "${noColor}"
         else
             defaultFontColor="$choice"; break
         fi
@@ -430,14 +430,14 @@ if [[ $* == "-s" ]]; then
     printf " [11/16] %bAnnotation Footer Size%b\n" "${yellow}" "${noColor}"
     printf " The percentage of the image height the footer height will be.\n"
     printf " Values range from 0.001 to 0.999.\n"
-    printf " Enter the desired %bfooter size%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$multiplier" "${noColor}"
+    printf " Enter the desired %bfooter size%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_multiplier" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             multiplier=${choice:-$default_multiplier}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=0.001 && $choice <=0.999" | bc -l | grep -q 1; then
             multiplier=$choice; break
         else
-            printf " Please enter a value between 0.001 and 0.999 %b(%s)%b" "${green}" "$multiplier" "${noColor}"
+            printf " Please enter a value between 0.001 and 0.999 %b(%s)%b" "${green}" "$default_multiplier" "${noColor}"
         fi
     done
 
@@ -446,14 +446,14 @@ if [[ $* == "-s" ]]; then
     printf " The percentage of the image height the logo height will be.\n"
     printf " This should not be bigger than the footer size.\n"
     printf " Values range from 0.001 to 0.999.\n"
-    printf " Enter the desired %bannotation logo size%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$logoMultiplier" "${noColor}"
+    printf " Enter the desired %bannotation logo size%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_logoMultiplier" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             logoMultiplier=${choice:-$default_logoMultiplier}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=0.001 && $choice <=0.999" | bc -l | grep -q 1; then
             logoMultiplier="$choice"; break
         else
-            printf " Please enter a value between 0.001 and 0.999 %b(%s)%b" "${green}" "$logoMultiplier" "${noColor}"
+            printf " Please enter a value between 0.001 and 0.999 %b(%s)%b" "${green}" "$default_logoMultiplier" "${noColor}"
         fi
     done
 
@@ -461,14 +461,14 @@ if [[ $* == "-s" ]]; then
     printf " [13/16] %bAnnotation Point Size%b\n" "${yellow}" "${noColor}"
     printf " The size of the font in relation to the image size.\n"
     printf " Values range from 0.001 to 0.999.\n"
-    printf " Enter the desired %bannotation point size%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$pointSizeMultiplier" "${noColor}"
+    printf " Enter the desired %bannotation point size%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_pointSizeMultiplier" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             pointSizeMultiplier=${choice:-$default_pointSizeMultiplier}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=0.001 && $choice <=0.999" | bc -l | grep -q 1; then
             pointSizeMultiplier="$choice"; break
         else
-            printf " Please enter a value between 0.001 and 0.999 %b(%s)%b" "${green}" "$pointSizeMultiplier" "${noColor}"
+            printf " Please enter a value between 0.001 and 0.999 %b(%s)%b" "${green}" "$default_pointSizeMultiplier" "${noColor}"
         fi
     done
 
@@ -476,14 +476,14 @@ if [[ $* == "-s" ]]; then
     printf " [14/16] %bAnnotation Offset%b\n" "${yellow}" "${noColor}"
     printf " How far to indent the logo and text relative to the image width.\n"
     printf " Values range from 0.001 to 0.999.\n"
-    printf " Enter the desired %bannotation offset%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$offset" "${noColor}"
+    printf " Enter the desired %bannotation offset%b %b(%s)%b" "${orange}" "${noColor}" "${green}" "$default_offset" "${noColor}"
     while read -erp ": " choice; do
         if [[ -z $choice ]]; then
             offset=${choice:-$default_offset}; break
         elif [[ "$choice" =~ ^[[:digit:].e+-]+$ ]] && echo "$choice>=0 && $choice <=0.999" | bc -l | grep -q 1; then
             offset="$choice"; break
         else
-            printf " Please enter a value between 0 and 0.999 %b(%s)%b" "${green}" "$offset" "${noColor}"
+            printf " Please enter a value between 0 and 0.999 %b(%s)%b" "${green}" "$default_offset" "${noColor}"
         fi
     done
 
@@ -942,7 +942,7 @@ printf " Resizing, adding the watermark or annotation%b...................%b  " 
 for i in *.tif; do
     # Nothing. ####################################
     if [[ "$watermarkChoice" == "n" ]]; then
-        convert -quiet "$i" -colorspace RGB -resize "$targetWidth"x"$targetHeight"\> -colorspace sRGB -unsharp "${sharpeningRadius}"x"${sharpeningSigma}"+"${sharpeningAmount}"+"${sharpeningThreshold}" "${i%.*}"."$format"
+        convert -quiet "$i" -colorspace RGB -resize "$targetWidth"x"$targetHeight"\> -colorspace sRGB -unsharp "${sharpeningRadius}"x"${sharpeningSigma}"+"${sharpeningAmount}"+"${sharpeningThreshold}" -quality 99% "${i%.*}"."$format"
 
         if [[ "$format" == "tif" ]]; then
             continue
@@ -1065,6 +1065,7 @@ for i in *.tif; do
             -gravity west \
             \( "$logo" -resize x"$LH" \) \
             -geometry +"$LO"+0 -composite \) \
+            -quality 99% \
             -append "${i%.*}"."$format" 2>/dev/null
 
         # Reset the targetHeight.
@@ -1117,7 +1118,7 @@ for i in *.tif; do
         convert -quiet "$i" -colorspace RGB -resize "$targetWidth"x"$targetHeight"\> -colorspace sRGB -unsharp "${sharpeningRadius}"x"${sharpeningSigma}"+"${sharpeningAmount}"+"${sharpeningThreshold}" "$i" 2> /dev/null
 
         # Add the watermark.
-        composite -quiet -gravity "$position" -geometry +"$HO"+"$VO" \( "$watermark" -resize "${WW}"x"${WH}" \) "$i" "${i%.*}"."$format" 2>/dev/null
+        composite -quiet -gravity "$position" -geometry +"$HO"+"$VO" \( "$watermark" -resize "${WW}"x"${WH}" \) -quality 99% "$i" "${i%.*}"."$format" 2>/dev/null
 
         if [[ "$format" == "tif" ]]; then
             continue
